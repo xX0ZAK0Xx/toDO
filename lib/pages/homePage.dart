@@ -13,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-
+    _taskManager.refreshItems();
     // Set up the callback to trigger a rebuild when a task is added
     _taskManager.onTaskAdded = () {
       setState(() {});

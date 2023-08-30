@@ -9,7 +9,7 @@ class TaskManager {
   List<Map<String, dynamic>> _tasks = [];
   final _todoList = Hive.box("todo");
 
-  void _refreshItems() {
+  void refreshItems() {
     final data = _todoList.keys.map((key) {
       final task = _todoList.get(key);
       return {"key": key, "task": task["task"], "desc": task["desc"]};
@@ -23,19 +23,19 @@ class TaskManager {
 
   Future<void> _addTask(Map<String, dynamic> newItem) async {
     await _todoList.add(newItem);
-    _refreshItems(); // Update the list of tasks
+    refreshItems(); // Update the list of tasks
     onTaskAdded?.call(); // Trigger the callback
   }
 
   Future<void> _updateTask(int taskKey, Map<String, dynamic> newItem) async {
     await _todoList.put(taskKey, newItem);
-    _refreshItems();
+    refreshItems();
     onTaskAdded?.call();
   }
 
   Future<void> _deleteTask(int taskKey) async {
     await _todoList.delete(taskKey);
-    _refreshItems();
+    refreshItems();
     onTaskAdded?.call();
     // Show SnackBar
   }
