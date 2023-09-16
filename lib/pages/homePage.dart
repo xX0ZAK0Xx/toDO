@@ -14,10 +14,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _taskManager.refreshItems();
+    //during the starting of the app, it will refresh the screen to check for any existing items
     // Set up the callback to trigger a rebuild when a task is added
     _taskManager.onTaskAdded = () {
       setState(() {});
-    };
+    };//ever time a new task is added, it will then call the callback
   }
 
 
